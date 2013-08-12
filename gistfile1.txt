@@ -1,0 +1,37 @@
+// AngularJS directives for jquery sparkline
+angular.module('sparkline', []);
+
+angular.module('sparkline')
+    .directive('jqSparkline', [function () {
+        'use strict';
+        return {
+            restrict: 'E,A',
+            require: 'ngModel',
+            link: function (scope, elem, attrs, ngModel) {
+
+                var sparkline = null;
+                var opts = {
+                    type: attrs.type,
+                    width: attrs.width || '100%',
+                    height: attrs.height || attrs.width * 3 / 4,
+                    lineColor: attrs.lineColor,
+                    fillColor: attrs.fillColor,
+                    disableHiddenCheck: true
+                };
+
+                scope.$watch(attrs.ngModel, function () {
+                    render();
+                });
+
+                var render = function () {
+                    sparkline=null;
+                    var data = ngModel.$viewValue;
+                    sparkline = $(elem).sparkline(data, opts);
+                };
+
+                $(window).resize(function(){
+                    render();
+                });
+            }
+        };
+    }]);
