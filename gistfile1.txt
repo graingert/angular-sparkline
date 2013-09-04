@@ -1,38 +1,29 @@
 // AngularJS directives for jquery sparkline
 angular.module('sparkline', []);
-
+ 
 angular.module('sparkline')
-    .directive('jqSparkline', [function () {
+    .directive('jqSparkline', [function ($parse) {
         'use strict';
         return {
             restrict: 'A',
             require: 'ngModel',
             link: function (scope, elem, attrs, ngModel) {
-
-                var parseOpts = function (options) {
-                    if (!options) {
-                        return;
-                    }
-                    var opts = {};
-                    var arrOpts = options.split(',');
-                    var len = arrOpts.length;
-                    for (var i = 0; i < len; i++) {
-                        var arrItem = arrOpts[i].split(':');
-                        // Only handle paired options
-                        arrItem.length > 1 ? opts[arrItem[0].trim()] = arrItem[1].trim() : angular.noop();
-                    }
-                    return opts;
-                };
-
-                var opts = parseOpts(attrs.opts) || {};
+ 
+                 var opts={};
                 opts.type = attrs.type || 'line';
 
                 scope.$watch(attrs.ngModel, function () {
                     render();
                 });
-
+                
+                scope.$watch(attrs.opts, function(){
+                  render();
+                }
+                  );
                 var render = function () {
                     var model;
+                    if(attrs.opts) angular.extend(opts, angular.fromJson(attrs.opts));
+                    console.log(opts);
                     // Trim trailing comma if we are a string
                     angular.isString(ngModel.$viewValue) ? model = ngModel.$viewValue.replace(/(^,)|(,$)/g, "") : model = ngModel.$viewValue;
                     var data;
