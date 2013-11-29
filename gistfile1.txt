@@ -1,3 +1,6 @@
+// Requires jQuery from http://jquery.com/
+// and jQuerySparklines from http://omnipotent.net/jquery.sparkline
+
 // AngularJS directives for jquery sparkline
 angular.module('sparkline', []);
  
