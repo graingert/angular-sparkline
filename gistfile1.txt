@@ -13,6 +13,7 @@ angular.module('sparkline')
             link: function (scope, elem, attrs, ngModel) {
  
                  var opts={};
+                 //TODO: Use $eval to get the object
                 opts.type = attrs.type || 'line';
 
                 scope.$watch(attrs.ngModel, function () {
