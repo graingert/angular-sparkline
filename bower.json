@@ -1,0 +1,24 @@
+{
+  "name": "angular-sparkline",
+  "main": "index.js",
+  "authors": [
+    "Peter John Smith <peter@visibility.net>"
+  ],
+  "description": "Angular directive for jQuery sparkline",
+  "moduleType": [],
+  "keywords": [
+    "Angular",
+    "sparkline",
+    "jquery",
+    "jquery-sparkline"
+  ],
+  "license": "Default GitHub https://help.github.com/articles/open-source-licensing/#what-happens-if-i-dont-choose-a-license",
+  "homepage": "https://github.com/graingert/angular-sparkline",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
